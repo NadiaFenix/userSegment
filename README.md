@@ -32,35 +32,67 @@
 
 ### Создание сегмента <a name="createSegment"></a>
 
-Создание сегмента:
-```
-curl -X POST -H "Content-Type: application/json" -d '{"slug":"AVITO_VOICE_MESSAGES"}' http://localhost:8000/segments 
 
+Запрос:
 ```
+POST /segments
+Content-Type: application/json
 
+{
+  "slug": "AVITO_VOICE_MESSAGES"
+}
+```
+Ответ:
+```
+HTTP/1.1 201 Created
+```
 
 ### Удаление сегмента <a name="deleteSegment"></a>
 
-Удаление сегмента:
+Запрос:
 ```
-curl --location --request POST 'http://curl -X DELETE http://localhost:8000/segments/AVITO_PERFORMANCE_VAS
+DELETE /segments/AVITO_PERFORMANCE_VAS
 ```
-
+Ответ:
+```
+HTTP/1.1 204 No Content
+```
 
 ### Добавление пользователя в сегмент <a name="addUserToSegment"></a>
 
-Добавление пользователя в сегмент:
+
+Запрос:
 ```
-curl -X PUT -H "Content-Type: application/json" -d '{"add":["AVITO_VOICE_MESSAGES","AVITO_PERFORMANCE_VAS"],"remove":["AVITO_DISCOUNT_30"]}' http://localhost:8000/users/user-1/segments
+PUT /users/user1/segments
+Content-Type: application/json
+
+{
+  "add": ["AVITO_VOICE_MESSAGES","AVITO_PERFORMANCE_VAS"],
+  "remove": ["AVITO_DISCOUNT_30"]
+}
+```
+
+Ответ:
+```
+HTTP/1.1 204 No Content
 ```
 
 ### Получение активных сегментов пользователя <a name="getActiveSegments"></a>
 
-Получение активных сегментов пользователя:
+Запрос:
 ```
-curl http://localhost:8000/users/segments/user-1
+GET /users/segments/user1
 ```
+Ответ:
+```
+HTTP/1.1 200 OK
+Content-Type: application/json
 
+[
+  { "slug": "AVITO_DISCOUNT_30" },
+  { "slug": "AVITO_VOICE_MESSAGES" }
+]
+```
 # Описание работы программного кода
 
 >программный код представляет собой простое веб-приложение на языке Go, которое работает с базой данных MySQL.
